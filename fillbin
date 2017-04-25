@@ -1,0 +1,22 @@
+#!/bin/bash
+
+low=$1
+hi=$2
+incr=$[$low+1]
+
+string="(1<<$low)"
+
+while [ $incr -le $hi ]
+do
+    string=$string"|(1<<$incr)"
+    incr=$[$incr+1]
+done
+
+echo $string
+
+let "hexargs = $string"
+
+let "math = $hexargs"
+hexout=$(echo "; obase=16; $math" | bc)
+${HOME}/software/sample_code/toBin $hexout
+#echo $hexout \($math\)

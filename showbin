@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo $1
+hexargs=$1
+
+let "math = $hexargs"
+echo $math
+hexout=$(echo "; obase=16; $math" | bc)
+${HOME}/software/sample_code/toBin $hexout
+echo $hexout \($math\)
